@@ -1,37 +1,20 @@
 #include <array>
-#include "servo.hpp"
 
-// struct Limbs {
-//     float shoulderElbow;
-//     float elbowWrist;
-//     float wristRotL;
-//     float wristRotZ;
-//     float wristClawL;
-//     float wristClawZ;
-// }
+#include "servo.hpp"
+#include "pwm_handler.hpp"
+#include "robot_arm_joints.hpp"
 
 #pragma once
 
-struct PwmHandlers {
-	PwmHandler* hip;
-	PwmHandler* shoulder;
-	PwmHandler* elbow;
-	PwmHandler* wrist;
-	PwmHandler* wristRot;
-	PwmHandler* claw;
-};
-
-enum class Joint : std::size_t {
-    HIP, SHOULDER, ELBOW, WRIST, WRIST_ROT, CLAW
-};
-
 class RobotArm {
 public:
-    RobotArm(PwmHandlers* pwmHandlers);
+    RobotArm(PwmHandler* pwmHandler, std::array<ServoConfig, JointCount>* servoConfigs);
     void setJoint(Joint joint, float angle);
+    void setJoints(std::array<float, JointCount>* angles);
     void update();
 
 private:
-    std::array<Servo, 6> servos_;
-    std::array<float, 6> next_joint_pos_;
+    std::array<Servo, JointCount> servos_;
+    std::array<float, JointCount> next_joint_pos_;
+    PwmHandler* pwmHandler_;
 };

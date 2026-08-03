@@ -1,18 +1,20 @@
+#include "servo.hpp"
+
 #pragma once
 
-struct ServoConfig {
-	float minAngle;
-//	float centerAngle = 0;
-	float maxAngle;
+// calibration
+/*
+ * servo		|	min		|	center	|	max
+ *
+ * 1: hip		|	560		|	1560	|	2560		560: 90deg cw (-), 2560: 90deg ccw (+)
+ * 2: shoulder	|	580		|	1480	|	2350		580: 80deg back, 2350: 80deg forward (measured from vertical center)
+ * 3: elbow		|	480		|	1450	|	2450		480: 90dg back, 2450: 90deg forward
+ * 4: wrist		|	430		|	1400	|	1400		430: 90deg forward, do not go over 0deg, mechanical block!!
+ * 5: wrist rot	|	450		|	1450	|	2450		450: 90deg ccw (+), 2450: 90deg cw (-)
+ * 6: claw		|	900		|	 900	|	1450        900: closed: 0deg, 1450: open: 75deg
+ */
 
-	uint16_t minPWM;
-	uint16_t centerPWM;
-	uint16_t maxPWM;
-
-	bool inverted;
-};
-
-namespace ServoConfigs {
+namespace Stm32_ServoConfigs {
     inline constexpr ServoConfig hip = {
         .minAngle = -90,
         .maxAngle = 90,

@@ -14,8 +14,21 @@ typedef struct {
 } TimerInit;
 
 typedef struct {
-	TimerInit timerInit[6];
+	TimerInit hip;
+	TimerInit shoulder;
+	TimerInit elbow;
+	TimerInit wrist;
+	TimerInit wristRot;
+	TimerInit claw;
+} TimerInitList;
 
+typedef struct {
+	I2C_HandleTypeDef* hi2c;
+} I2cInit;
+
+typedef struct {
+	TimerInitList timerInitList;
+	I2cInit i2cInit;
 } Params;
 
 int alt_main(Params* params, __IO uint32_t* buttonState);

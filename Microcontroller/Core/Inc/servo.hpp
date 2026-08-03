@@ -1,17 +1,24 @@
 #include <cstdint>
 
-#include "servo_configs.hpp"
-#include "pwm_handler.hpp"
-
 #pragma once
+
+struct ServoConfig {
+	float minAngle;
+//	float centerAngle = 0;
+	float maxAngle;
+
+	uint16_t minPWM;
+	uint16_t centerPWM;
+	uint16_t maxPWM;
+
+	bool inverted;
+};
 
 class Servo {
 public:
-	Servo(const ServoConfig* config, PwmHandler* pwm);
-	void move(float angle);
+	Servo(const ServoConfig* config);
+	uint16_t angle_to_pwm(float angle);
 
 private:
 	const ServoConfig* config_;
-	PwmHandler* pwm_;
-	uint16_t angle_to_pwm_(float angle);
 };

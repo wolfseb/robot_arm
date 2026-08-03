@@ -130,17 +130,15 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
   Params params = {
-	  .timerInit = {
-			{ &htim2, TIM_CHANNEL_2 },
-			{ &htim3, TIM_CHANNEL_1 },
-			{ &htim2, TIM_CHANNEL_3 },
-			{ &htim8, TIM_CHANNEL_2 },
-			{ &htim4, TIM_CHANNEL_1 },
-			{ &htim3, TIM_CHANNEL_2 }
+	  .timerInitList = {
+			.hip = { &htim2, TIM_CHANNEL_2 },
+			.shoulder = { &htim3, TIM_CHANNEL_1 },
+			.elbow = { &htim2, TIM_CHANNEL_3 },
+			.wrist = { &htim8, TIM_CHANNEL_2 },
+			.wristRot = { &htim4, TIM_CHANNEL_1 },
+			.claw = { &htim3, TIM_CHANNEL_2 }
 	  },
-//	  .buttonState = BspButtonState,
-//	  .pressed = BUTTON_PRESSED,
-//	  .released = BUTTON_RELEASED
+	  .i2cInit = { &hi2c1 }
   };
 
   alt_main(&params, &BspButtonState);
@@ -149,16 +147,15 @@ int main(void)
   {
 
     /* -- Sample board code for User push-button in interrupt mode ---- */
-//   if (BspButtonState == BUTTON_PRESSED)
-//   {
-//     /* Update button state */
-//     BspButtonState = BUTTON_RELEASED;
-//     /* -- Sample board code to toggle leds ---- */
-//     BSP_LED_Toggle(LED2);
-//     servoState = 1500;
-//
-//     /* ..... Perform your action ..... */
-//   }
+   if (BspButtonState == BUTTON_PRESSED)
+   {
+     /* Update button state */
+     BspButtonState = BUTTON_RELEASED;
+     /* -- Sample board code to toggle leds ---- */
+     BSP_LED_Toggle(LED2);
+
+     /* ..... Perform your action ..... */
+   }
 
     /* USER CODE END WHILE */
 

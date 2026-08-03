@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(
     servo_tests
     test_servo.cpp
-    mock_pwm_handler.cpp
     ../Microcontroller/Core/Src/servo.cpp
 )
 
