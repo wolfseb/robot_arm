@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "UCRT64",
+            "compilerPath": "C:/msys64/ucrt64/bin/c++.exe",
+            "cppStandard": "c++23",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/msys64/ucrt64/include",
+                "C:/msys64/ucrt64/include/SDL3",
+                "C:/dev/imgui",
+                "C:/dev/imgui/backends"
+            ]
+        }
+    ],
+    "version": 4
+}
