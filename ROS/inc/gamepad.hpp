@@ -1,3 +1,5 @@
+#define SDL_MAIN_HANDLED
+
 #include <vector>
 
 #include <SDL3/SDL.h>

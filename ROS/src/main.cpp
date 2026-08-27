@@ -1,5 +1,3 @@
-#define SDL_MAIN_HANDLED
-
 #include <iostream>
 
 #include "gamepad.hpp"
@@ -44,8 +42,7 @@ int main(int argc, char* argv[])
             {
                 running = false;
             }
-
-            if (event.type == SDL_EVENT_JOYSTICK_AXIS_MOTION)
+            else if (event.type == SDL_EVENT_JOYSTICK_AXIS_MOTION)
             {
                 gp.left_x = SDL_GetGamepadAxis(gamepad, SDL_GAMEPAD_AXIS_LEFTX);
                 gp.left_y = SDL_GetGamepadAxis(gamepad, SDL_GAMEPAD_AXIS_LEFTY);
