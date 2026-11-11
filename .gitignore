@@ -89,6 +89,8 @@ Startup/
 *stm32f4xx*.h
 syscalls.c
 sysmem.c
+Middlewares
+USB_DEVICE
 
 # generated linker files
 STM32*.ld
