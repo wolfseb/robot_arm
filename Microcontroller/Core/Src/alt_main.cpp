@@ -4,7 +4,7 @@
 // #include "stm32_pwm_configs.hpp"
 // #include "stm32_pwm_handler.cpp"
 #include "pca9685_pwm_configs.hpp"
-#include "pca9685_pwm_handler.cpp"
+#include "pca9685_pwm_handler.hpp"
 
 #define BUTTON_RELEASED                    0U
 #define BUTTON_PRESSED                     1U
@@ -39,9 +39,9 @@ int alt_main (Params* params, __IO uint32_t* buttonState)
 
 	RobotArm robot(&pwmHandler, &servoConfigs);
 
-	std::array<float, 6> pos1 = { 0, 0, 0, 0, 0, 75 };
-	std::array<float, 6> pos2 = { -60, 30, -60, -60, 0, 40 };
-	std::array<float, 6>* pos = &pos1;
+	std::array<float, JointCount> pos1 = { 0, 0, 0, 0, 0, 75 };
+	std::array<float, JointCount> pos2 = { -60, 30, -60, -60, 0, 40 };
+	std::array<float, JointCount>* pos = &pos1;
 	bool pos_toggle = false;
 
 	while (1)
