@@ -1,12 +1,14 @@
 #include "pca9685_pwm_handler.hpp"
 
 PCA9685_PwmHandler::PCA9685_PwmHandler(I2C_HandleTypeDef* i2c) : i2c_(i2c), addr_(0x40) {
+	HAL_StatusTypeDef status;
+
 	// set SLEEP mode to set prescale
 	uint8_t data[] = {
 			0x00,
 			0b00010001
 	};
-	HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(
+	status = HAL_I2C_Master_Transmit(
 			i2c_,
 			addr_ << 1,
 			data,

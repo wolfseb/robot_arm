@@ -4,10 +4,9 @@
 #include "pca9685_pwm_configs.hpp"
 #include "robot_arm.hpp"
 
-void vServoTask(void* pvParameters) {
-    ServoTaskParameters* pParams = (ServoTaskParameters*) pvParameters;
-    PCA9685_PwmHandler pwmHandler(pParams->i2c);
-    
+void vServoTask(void* argument) {
+    PCA9685_PwmHandler pwmHandler(&hi2c1);
+
 	std::array<ServoConfig, JointCount> servoConfigs = {
 			PCA9685_ServoConfigs::hip,
 			PCA9685_ServoConfigs::shoulder,

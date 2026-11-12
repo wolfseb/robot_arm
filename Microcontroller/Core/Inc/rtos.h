@@ -12,10 +12,6 @@ extern "C"
 {
 #endif
 
-typedef struct {
-	I2C_HandleTypeDef* i2c;
-} ServoTaskParameters;
-
 void vServoTask(void* pvParameters);
 
 #ifdef __cplusplus
